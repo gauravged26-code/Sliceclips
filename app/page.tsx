@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { 
   Video, 
   LayoutDashboard, 
-  FolderVideo, 
   Settings, 
   LogOut, 
   Menu, 
@@ -100,7 +99,7 @@ export default function DashboardPage() {
           {/* WORKSPACE & CONTENT LAYOUT */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             
-            {/* Left Content Column - Video Workspace Grid */}
+            {/* Left Content Column */}
             <div className="lg:col-span-2 bg-slate-950 border border-slate-800 rounded-xl p-5 min-h-[300px] flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between mb-4">
@@ -108,7 +107,7 @@ export default function DashboardPage() {
                   <span className="text-xs text-indigo-400 cursor-pointer hover:underline">View all</span>
                 </div>
                 <div className="border border-dashed border-slate-800 rounded-lg p-8 text-center text-slate-500 my-auto flex flex-col items-center justify-center min-h-[180px]">
-                  <FolderVideo className="w-10 h-10 text-slate-600 mb-2" />
+                  <Video className="w-10 h-10 text-slate-600 mb-2" />
                   <p className="text-sm text-slate-400">No recent video slices found.</p>
                   <p className="text-xs text-slate-600 mt-1">Create a new project to generate video assets.</p>
                 </div>
@@ -138,11 +137,10 @@ export default function DashboardPage() {
   );
 }
 
-// Sidebar Navigation Sub-Component
 function SidebarNavigation() {
   const navItems = [
     { name: "Dashboard", icon: LayoutDashboard, active: true },
-    { name: "Video Slices", icon: FolderVideo, active: false },
+    { name: "Video Slices", icon: Video, active: false },
     { name: "Analytics", icon: BarChart3, active: false },
     { name: "Settings", icon: Settings, active: false },
   ];
