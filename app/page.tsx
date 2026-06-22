@@ -175,4 +175,3 @@ function SidebarNavigation() {
     </div>
   );
 }
-fix: web update layout syntax
