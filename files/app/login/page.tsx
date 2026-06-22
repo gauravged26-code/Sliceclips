@@ -1,181 +1,130 @@
-"use client";
-
-import React, { useState } from "react";
-import { 
-  Video, 
-  LayoutDashboard, 
-  FolderVideo, 
-  Settings, 
-  LogOut, 
-  Menu, 
-  X, 
-  BarChart3, 
-  Sliders,
-  Plus
-} from "lucide-react";
-
-export default function DashboardPage() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  // Quick stats mock data
-  const stats = [
-    { name: "Total Clips", value: "128", change: "+12% this week" },
-    { name: "Processed Videos", value: "94", change: "Ready to download" },
-    { name: "Storage Used", value: "14.2 GB", change: "Of 50 GB limit" },
-
-  return (
-    <div className="flex h-screen bg-slate-900 text-slate-100 font-sans overflow-hidden">
-      
-      {/* --- SIDEBAR FOR MOBILE --- */}
-      <div className={`fixed inset-0 z-50 flex md:hidden transition-opacity duration-300 ${sidebarOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
-        <div className="fixed inset-0 bg-slate-950/80" onClick={() => setSidebarOpen(false)} />
-        <div className={`relative flex flex-col w-64 bg-slate-950 p-5 transform transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}>
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center gap-2 font-bold text-xl text-indigo-400">
-              <Video className="w-6 h-6" />
-              <span>SliceClips</span>
-            </div>
-            <button onClick={() => setSidebarOpen(false)} className="text-slate-400 hover:text-slate-100">
-              <X className="w-6 h-6" />
-            </button>
-          </div>
-          <SidebarNavigation />
-        </div>
-      </div>
-
-      {/* --- SIDEBAR FOR DESKTOP --- */}
-      <aside className="hidden md:flex flex-col w-64 bg-slate-950 border-r border-slate-800 p-5 shrink-0">
-        <div className="flex items-center gap-2 font-bold text-xl text-indigo-400 mb-8 px-2">
-          <Video className="w-6 h-6" />
-          <span>SliceClips</span>
-        </div>
-        <SidebarNavigation />
-      </aside>
-
-      {/* --- MAIN CONTENT AREA --- */}
-      <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
-        
-        {/* TOP HEADER */}
-        <header className="flex items-center justify-between h-16 bg-slate-950 border-b border-slate-800 px-4 md:px-8 shrink-0">
-          <button onClick={() => setSidebarOpen(true)} className="md:hidden p-2 text-slate-400 hover:text-slate-100">
-            <Menu className="w-6 h-6" />
-          </button>
-          
-          <div className="hidden md:block text-sm text-slate-400">
-            Welcome back, <span className="text-slate-200 font-medium">Developer</span>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <button className="flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-1.5 rounded-lg text-sm font-medium transition-colors">
-              <Plus className="w-4 h-4" />
-              <span>New Project</span>
-            </button>
-            <div className="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center font-bold text-slate-950 text-sm">
-              DV
-            </div>
-          </div>
-        </header>
-
-        {/* INNER SCROLLABLE CONTAINER */}
-        <main className="flex-1 overflow-y-auto p-4 md:p-8 space-y-6">
-          
-          {/* PAGE TITLE */}
-          <div>
-            <h1 className="text-2xl font-bold tracking-tight">Dashboard Overview</h1>
-            <p className="text-sm text-slate-400">Monitor and configure your media segment assets layout.</p>
-          </div>
-
-          {/* STATS ROW */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {stats.map((stat, index) => (
-              <div key={index} className="bg-slate-950 border border-slate-800 p-5 rounded-xl shadow-sm">
-                <p className="text-sm font-medium text-slate-400">{stat.name}</p>
-                <p className="text-2xl font-bold mt-1 text-white">{stat.value}</p>
-                <p className="text-xs text-indigo-400 mt-1 font-medium">{stat.change}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* WORKSPACE & CONTENT LAYOUT */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            
-            {/* Left Content Column - Video Workspace Grid */}
-            <div className="lg:col-span-2 bg-slate-950 border border-slate-800 rounded-xl p-5 min-h-[300px] flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-semibold text-lg text-slate-200">Recent Video Slices</h3>
-                  <span className="text-xs text-indigo-400 cursor-pointer hover:underline">View all</span>
-                </div>
-                <div className="border border-dashed border-slate-800 rounded-lg p-8 text-center text-slate-500 my-auto flex flex-col items-center justify-center min-h-[180px]">
-                  <FolderVideo className="w-10 h-10 mb-2 text-slate-600" />
-                  <p className="text-sm">No video projects deployed yet.</p>
-                  <p className="text-xs text-slate-600 mt-1">Upload files to populate your clip repository.</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Content Column - Configurations Panel */}
-            <div className="bg-slate-950 border border-slate-800 rounded-xl p-5 space-y-4">
-              <h3 className="font-semibold text-lg text-slate-200 flex items-center gap-2">
-                <Sliders className="w-4 h-4 text-indigo-400" />
-                <span>Quick Configurations</span>
-              </h3>
-              <div className="space-y-3 text-sm">
-                <div className="p-3 bg-slate-900 border border-slate-800 rounded-lg">
-                  <p className="font-medium text-slate-300">Firebase Synchronization</p>
-                  <p className="text-xs text-emerald-400 mt-0.5">Connected & Operational</p>
-                </div>
-                <div className="p-3 bg-slate-900 border border-slate-800 rounded-lg">
-                  <p className="font-medium text-slate-300">Layout Optimization</p>
-                  <p className="text-xs text-slate-400 mt-0.5">Dynamic aspect-ratio active</p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-        </main>
-      </div>
-    </div>
-  );
+(<FolderVideo "+12% "128", "14.2 "94", "Of "Processed "Ready "Storage "Total "lucide-react"; "react"; "use ( *app/page.tsx*. // 28 50 <div BarChart3, Clips", DashboardPage() FolderVideo, GB GB", HTML Here I LayoutDashboard, LogOut, Menu, Plus Quick React, Settings, Sliders, Used", Video, Videos", X, You [sidebarOpen, ]; ];```tsxstats a all all, and array bracket broke c), can change: className="flex h-screen bg-slate-900 text-slate-100 font-sans overflow-hidden" cleaned client"; closed closing code complete, completely const copy data default download" entire export file file: fixed for from fully function functions. import is it layout layout. limit" line missing mock name: of on open out over paste properly rest restored return select setSidebarOpen]="useState(false);" stats="[" straight structure, syntax, tags that the there this this, to up, useState value: was week" working your { } },>
+​{/* --- SIDEBAR FOR MOBILE --- */}
+<div className={fixed inset-0 z-50 flex md:hidden transition-opacity duration-300 ${sidebarOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}}>
+<div className="fixed inset-0 bg-slate-950/80" onClick={() => setSidebarOpen(false)} />
+<div className={relative flex flex-col w-64 bg-slate-950 p-5 transform transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}}>
+<div className="flex items-center justify-between mb-8">
+<div className="flex items-center gap-2 font-bold text-xl text-indigo-400">
+<Video className="w-6 h-6"/>
+<span>SliceClips</span>
+</div>
+<button onClick={() => setSidebarOpen(false)} className="text-slate-400 hover:text-slate-100">
+<X className="w-6 h-6"/>
+</button>
+</div>
+<SidebarNavigation/>
+</div>
+</div>
+​{/* --- SIDEBAR FOR DESKTOP --- */}
+<aside className="hidden md:flex flex-col w-64 bg-slate-950 border-r border-slate-800 p-5 shrink-0">
+<div className="flex items-center gap-2 font-bold text-xl text-indigo-400 mb-8 px-2">
+<Video className="w-6 h-6"/>
+<span>SliceClips</span>
+</div>
+<SidebarNavigation/>
+</aside>
+​{/* --- MAIN CONTENT AREA --- */}
+<div className="flex flex-col flex-1 min-w-0 overflow-hidden">
+​{/* TOP HEADER */}
+<header className="flex items-center justify-between h-16 bg-slate-950 border-b border-slate-800 px-4 md:px-8 shrink-0">
+<button onClick={() => setSidebarOpen(true)} className="md:hidden p-2 text-slate-400 hover:text-slate-100">
+<Menu className="w-6 h-6"/>
+</button>
+​<div className="hidden md:block text-sm text-slate-400">
+Welcome back, <span className="text-slate-200 font-medium">Developer</span>
+</div>
+​<div className="flex items-center gap-4">
+<button className="flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-1.5 rounded-lg text-sm font-medium transition-colors">
+<Plus className="w-4 h-4"/>
+<span>New Project</span>
+</button>
+<div className="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center font-bold text-slate-950 text-sm">
+DV
+</div>
+</div>
+</header>
+​{/* INNER SCROLLABLE CONTAINER */}
+<main className="flex-1 overflow-y-auto p-4 md:p-8 space-y-6">
+​{/* PAGE TITLE */}
+<div>
+<h1 className="text-2xl font-bold tracking-tight">Dashboard Overview</h1>
+<p className="text-sm text-slate-400">Monitor and configure your media segment assets layout.</p>
+</div>
+​{/* STATS ROW */}
+<div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+{stats.map((stat, index) => (
+<div key={index} className="bg-slate-950 border border-slate-800 p-5 rounded-xl shadow-sm">
+<p className="text-sm font-medium text-slate-400">{stat.name}</p>
+<p className="text-2xl font-bold mt-1 text-white">{stat.value}</p>
+<p className="text-xs text-indigo-400 mt-1 font-medium">{stat.change}</p>
+</div>
+))}
+</div>
+​{/* WORKSPACE & CONTENT LAYOUT */}
+<div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+​{/* Left Content Column - Video Workspace Grid */}
+<div className="lg:col-span-2 bg-slate-950 border border-slate-800 rounded-xl p-5 min-h-[300px] flex flex-col justify-between">
+<div>
+<div className="flex items-center justify-between mb-4">
+<h3 className="font-semibold text-lg text-slate-200">Recent Video Slices</h3>
+<span className="text-xs text-indigo-400 cursor-pointer hover:underline">View all</span>
+</div>
+<div className="border border-dashed border-slate-800 rounded-lg p-8 text-center text-slate-500 my-auto flex flex-col items-center justify-center min-h-[180px]">
+<FolderVideo className="w-10 h-10 text-slate-600 mb-2"/>
+<p className="text-sm text-slate-400">No recent video slices found.</p>
+<p className="text-xs text-slate-600 mt-1">Create a new project to generate video assets.</p>
+</div>
+</div>
+</div>
+​{/* Right Configuration Column */}
+<div className="bg-slate-950 border border-slate-800 rounded-xl p-5 flex flex-col justify-between">
+<div>
+<h3 className="font-semibold text-lg text-slate-200 mb-4">Quick Controls</h3>
+<div className="space-y-4">
+<div className="flex items-center justify-between p-3 bg-slate-900 border border-slate-800 rounded-lg">
+<div className="flex items-center gap-3">
+<Sliders className="w-5 h-5 text-indigo-400"/>
+<span className="text-sm font-medium">Auto-Segment</span>
+</div>
+<span className="text-xs bg-indigo-500/10 text-indigo-400 px-2 py-0.5 rounded-full font-medium">Active</span>
+</div>
+</div>
+</div>
+</div>
+​</div>
+</main>
+</div>
+</div>
+);
 }
-
-{/* --- SIDEBAR LINK WORKER SECTIONS --- */}
+​// Sidebar Navigation Sub-Component
 function SidebarNavigation() {
-  const menuItems = [
-    { icon: LayoutDashboard, label: "Overview", active: true },
-    { icon: FolderVideo, label: "My Clips", active: false },
-    { icon: BarChart3, label: "Analytics", active: false },
-    { icon: Settings, label: "Settings", active: false },
-  ];
+const navItems = [
+{ name: "Dashboard", icon: LayoutDashboard, active: true },
+{ name: "Video Slices", icon: FolderVideo, active: false },
+{ name: "Analytics", icon: BarChart3, active: false },
+{ name: "Settings", icon: Settings, active: false },
+];
+​return (
+<div className="flex flex-col flex-1 justify-between">
+<nav className="space-y-1">
+{navItems.map((item) => {
+const Icon = item.icon;
+return (
+<button
+key={item.name}
+className={flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${ item.active  ? "bg-indigo-600 text-white"  : "text-slate-400 hover:bg-slate-900 hover:text-slate-100" }}
 
-  return (
-    <nav className="flex flex-col flex-1 justify-between">
-      <ul className="space-y-1.5">
-        {menuItems.map((item, index) => {
-          const Icon = item.icon;
-          return (
-            <li key={index}>
-              <a
-                href="#"
-                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                  item.active
-                    ? "bg-indigo-600/10 text-indigo-400 border border-indigo-500/20"
-                    : "text-slate-400 hover:bg-slate-900 hover:text-slate-200"
-                }`}
-              >
-                <Icon className="w-4 h-4" />
-                <span>{item.label}</span>
-              </a>
-            </li>
-          );
-        })}
-      </ul>
-
-      <button className="flex items-center gap-3 px-3 py-2.5 mt-auto rounded-lg text-sm font-medium text-rose-400 hover:bg-rose-500/10 transition-colors w-full text-left">
-        <LogOut className="w-4 h-4" />
-        <span>Sign Out</span>
-      </button>
-    </nav>
-  );
+<Icon className="w-5 h-5"/>
+<span>{item.name}</span>
+</button>
+);
+})}
+</nav>
+​<button className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm font-medium text-rose-400 hover:bg-rose-500/10 transition-colors mt-auto">
+<LogOut className="w-5 h-5"/>
+<span>Log Out</span>
+</button>
+</div>
+);
 }
