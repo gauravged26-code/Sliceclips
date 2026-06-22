@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { auth } from "../lib/firebase";
+import { auth } from "lib/firebase";
 import { onAuthStateChanged, User } from "firebase/auth";
 // Import your template's original Navbar component here
 // Note: Adjust this import path to match where your template's Navbar actually lives 
