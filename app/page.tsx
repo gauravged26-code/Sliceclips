@@ -41,12 +41,20 @@ export default function DashboardPage() {
       setStatus('error');
     }
   };
-
+  export default function Page() {
+// Any functions, hooks, or varibales go here
+  // Make sure there are no stray '}' or '};' closing the function right here!
   return (
     <div className="flex h-screen bg-slate-950 text-slate-50 font-sans">
       {/* Sidebar Nav */}
       <aside className="w-64 bg-slate-900 border-r border-slate-800 flex flex-col justify-between p-4">
         <div>
+          {/* Sidebar contant */}
+        </div>
+      </aside>
+    </div>
+    );
+  } // this is where the function should actually close
           <div className="flex items-center gap-3 px-2 py-4 mb-4">
             <div className="bg-blue-600 p-2 rounded-xl text-white">
               <Video className="w-6 h-6" />
