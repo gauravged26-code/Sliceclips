@@ -1,0 +1,32 @@
+"use client";
+
+import React, { useEffect, useState } from "react";
+import { auth } from "./lib/firebase";
+import { onAuthStateChanged, User } from "firebase/auth";
+
+export default function RootLayoutWrapper({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  if (loading) {
+    return (
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh", backgroundColor: "#0f172a", color: "#fff" }}>
+        <p>Loading...</p>
+      </div>
+    );
+  }
+
+  return <>{children}</>;
+}
