@@ -22,7 +22,6 @@ export default function DashboardPage() {
     { name: "Total Clips", value: "128", change: "+12% this week" },
     { name: "Processed Videos", value: "94", change: "Ready to download" },
     { name: "Storage Used", value: "14.2 GB", change: "Of 50 GB limit" },
-  ];
 
   return (
     <div className="flex h-screen bg-slate-900 text-slate-100 font-sans overflow-hidden">
