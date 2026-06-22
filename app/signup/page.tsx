@@ -1,1 +1,12 @@
-export default function SignupPage() { return <div style={{padding: '50px', fontFamily: 'sans-serif'}}><h1>Sign Up</h1><p>Registration functionality placeholder.</p></div>; } 
+"use client";
+
+import React from "react";
+
+export default function SignupPage() {
+  return (
+    <div style={{ padding: '50px', fontFamily: 'sans-serif', backgroundColor: '#0f172a', color: '#fff', minHeight: '100vh' }}>
+      <h2>Create your Account</h2>
+      <p>Sign up page workspace placeholder.</p>
+    </div>
+  );
+}
