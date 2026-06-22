@@ -1,20 +1,18 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
 
-// Safe, clean extraction from your local environment configuration
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  apiKey: "AlzaSyDaYr9qtBJmJ62Xp0J2wr-p28PLI3Je918",
+  authDomain: "sliceclips-c6470.firebaseapp.com",
+  projectId: "sliceclips-c6470",
+  storageBucket: "sliceclips-c6470.firebasestorage.app",
+  messagingSenderId: "240972457599",
+  appId: "1:240972457599:web:0337a89555e29234bd814a",
+  measurementId: "G-2XNC2PY9G3"
 };
 
-// Check if an app instance already exists to completely eliminate duplicate errors
+// Safely initialize for Next.js SSR environment
 const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-export const auth = getAuth(app);
-export const db = getFirestore(app);
-export default app;
+export { app, auth };
