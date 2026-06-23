@@ -105,6 +105,7 @@ Return only the caption text, nothing else.`;
 
 export const transcribeVideo = async (_videoUrl: string): Promise<TranscriptSegment[]> => {
   try {
+     // 
     // This explicitly uses the variable so TypeScript passes the build check
     console.log("Processing transcription for video url:", videoUrl);
 
