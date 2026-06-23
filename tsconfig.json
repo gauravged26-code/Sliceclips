@@ -52,3 +52,4 @@
     "node_modules"
   ]
 }
+fix: map path aliases to files directory 
