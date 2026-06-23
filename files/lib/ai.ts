@@ -103,7 +103,7 @@ Return only the caption text, nothing else.`;
   }
 };
 
-export const transcribeVideo = async (videoUrl?: string): Promise<TranscriptSegment[]> => {
+export const transcribeVideo = async (_videoUrl?: string): Promise<TranscriptSegment[]> => {
   try {
     // We log the URL to guarantee TypeScript reads the variable if (videoUrl) {
     console.log(Processing target URL:", videoUrl);
