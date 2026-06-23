@@ -105,26 +105,18 @@ Return only the caption text, nothing else.`;
 
 // Transcribe video using AssemblyAI or similar
 // For MVP, we'll use a placeholder - you can integrate AssemblyAI for real transcription
-export const transcribeVideo = async (videoUrl: string): Promise<TranscriptSegment[]> => {
+export const transcribeVideo = async (): Promise<any> => {
   try {
-    // In production, integrate with AssemblyAI or similar service
-    // For now, returning placeholder transcript structure
-    // Example:
     return [
       {
+        text: "This is the beginning of your video transcript",
         startTime: 0,
-        text: 'This is the beginning of your video transcript',
-        endTime: 3,
-      },
-      {
-        startTime: 3,
-        text: 'Each segment includes timing and text',
-        endTime: 6,
-      },
+        endTime: 3
+      }
     ];
   } catch (error) {
-    console.error('Error transcribing video:', error);
-    return [];
+    console.error("Transcription error:", error);
+    throw error;
   }
 };
 
