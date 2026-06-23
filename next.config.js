@@ -10,4 +10,4 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
-fix: resolve next config syntax error 
+fix: remove stray text from next config
