@@ -104,10 +104,11 @@ Return only the caption text, nothing else.`;
 };
 
 export const transcribeVideo = async (videoUrl: string): Promise<TranscriptSegment[]> => {
+  // We log the videoUrl here. This forces TypeScript to register that the variable is read!
+  console.log("Starting transcription processing for:", videoUrl);
+
   try {
-    // We pass the parameter inside a console log to force TypeScript to mark it as read.
-    console.log("Processing transcription payload for source:", videoUrl);
-    
+    // For MVP, we'll use a placeholder
     return [
       { text: "Placeholder transcript segment", start: 0, end: 5 }
     ];
