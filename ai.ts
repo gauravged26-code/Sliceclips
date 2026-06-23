@@ -119,22 +119,6 @@ export const transcribeVideo = async (): Promise<any> => {
     throw error;
   }
 };
-      {
-        startTime: 0,
-        text: 'This is the beginning of your video transcript',
-        endTime: 3,
-      },
-      {
-        startTime: 3,
-        text: 'Each segment includes timing and text',
-        endTime: 6,
-      },
-    ];
-  } catch (error) {
-    console.error('Error transcribing video:', error);
-    return [];
-  }
-};
 
 // Convert transcript segments to formatted transcript text
 export const formatTranscript = (segments: TranscriptSegment[]): string => {
