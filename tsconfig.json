@@ -30,9 +30,7 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./files/*","./*"]
     },
     "allowJs": true,
     "noEmit": true,
@@ -54,3 +52,4 @@
     "node_modules"
   ]
 }
+fix: map path aliases to files directory 
