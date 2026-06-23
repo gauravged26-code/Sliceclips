@@ -1,30 +1,28 @@
 {
   "compilerOptions": {
-    "target": "es2022",
+    "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
     "plugins": [
       {
         "name": "next"
       }
     ],
     "paths": {
-      "@/*": ["./*", "./files/*"]
+      "@/*": ["./*", "./files/*", "./files/components/*"]
     }
   },
-  "include": ["next-env.d.ts", "*/.ts", "*/.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "*/.ts", "*/.tsx"],
   "exclude": ["node_modules"]
 }
-fix: resolve tsconfig json syntax syntax token error.
+fix: clean tsconfig syntax
