@@ -103,7 +103,7 @@ Return only the caption text, nothing else.`;
   }
 };
 
-export const transcribeVideo = async (videoUrl: string): Promise<TranscriptSegment[]> => {
+export const transcribeVideo = async (_videoUrl: string): Promise<TranscriptSegment[]> => {
   try {
     // We pass the parameter inside a console log to force TypeScript to mark it as read.
     console.log("Processing transcription payload for source:", videoUrl);
