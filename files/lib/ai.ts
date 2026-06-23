@@ -109,13 +109,13 @@ export const transcribeVideo = async (videoUrl: string): Promise<TranscriptSegme
     // This tells the TypeScript compiler that the variable is read and required!
     return [
       { 
-        text: Initialized tracking structure for media source: ${videoUrl}, 
+        text: "Placeholder transcript segment", 
         start: 0, 
-        end: 10 
+        end: 5 
       }
     ];
   } catch (error) {
-    console.error("Transcription mock pipeline error:", error);
+    console.error("Transcription error:", error);
     throw error;
   }
 };
