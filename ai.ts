@@ -105,8 +105,11 @@ Return only the caption text, nothing else.`;
 
 // Transcribe video using AssemblyAI or similar
 // For MVP, we'll use a placeholder - you can integrate AssemblyAI for real transcription
-export const transcribeVideo = async (): Promise<any> => {
+export const transcribeVideo = async (videoUrl: string): Promise<any[]> => {
   try {
+    // log videoUrl so TypeScript sees it is being used cleanly 
+    console.log("Processing mock transcription fro Url:", videoUrl);
+    
     return [
       {
         text: "This is the beginning of your video transcript",
@@ -142,3 +145,4 @@ export const getVideoDuration = async (url: string): Promise<number> => {
     };
   });
 };
+fix: resolve ts compilation errors in ai.ts 
