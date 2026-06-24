@@ -1,0 +1,47 @@
+// app/api/videos/upload/route.ts
+import { NextResponse } from 'next/server';
+
+// Max file upload size limit (e.g., 50MB)
+const MAX_FILE_SIZE = 50 * 1024 * 1024; 
+const ALLOWED_FORMATS = ['video/mp4', 'video/quicktime', 'video/webm'];
+
+export async function POST(request: Request) {
+  try {
+    const formData = await request.formData();
+    const file = formData.get('file') as File;
+
+    // 1. Guardrail Validation
+    if (!file) {
+      return NextResponse.json({ error: 'No video file provided.' }, { status: 400 });
+    }
+
+    if (file.size > MAX_FILE_SIZE) {
+      return NextResponse.json({ error: 'File size exceeds the 50MB studio limit.' }, { status: 400 });
+    }
+
+    if (!ALLOWED_FORMATS.includes(file.type)) {
+      return NextResponse.json({ error: 'Invalid format. Please upload MP4, MOV, or WebM.' }, { status: 400 });
+    }
+
+    // 2. Metadata Extraction
+    const metadata = {
+      filename: file.name,
+      size: file.size,
+      type: file.type,
+      uploadedAt: new Date().toISOString(),
+    };
+
+    // Placeholder for Milestone 2: Direct storage pipe integration
+    console.log('Video received successfully:', metadata);
+
+    return NextResponse.json({
+      success: true,
+      message: 'Video uploaded and staging completed successfully.',
+      video: metadata
+    }, { status: 200 });
+
+  } catch (error) {
+    console.error('Upload API Error:', error);
+    return NextResponse.json({ error: 'Internal Server Error during upload staging.' }, { status: 500 });
+  }
+}
