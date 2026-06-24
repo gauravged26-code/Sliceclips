@@ -28,22 +28,15 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  href={isAuthenticated ? '/dashboard' : '/signup'}
-                  style={{ pointerEvents: 'auto', zIndex: 50, postion: 'relative' }}
-                  className="btn-primary inline-flex items-center justify-center cursor-pointer"
-                >
-                  {isAuthenticated ? 'Go to Dashboard' : 'Start Free Trial'} 
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Link>
-                <button 
-                  style={{pointerEvents: 'auto', zIndex: 50, position: 'relative' }}
-                  className="btn-secondary cursor-pointer"
-                  >
-                  Watch Demo 
-                </button>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-4">
+  <Link
+    href={isAuthenticated ? '/dashboard' : '/signup'}
+    className="btn-primary inline-flex items-center justify-center"
+  >
+    {isAuthenticated ? 'Go to Dashboard' : 'Start Free Trial'} <ArrowRight className="ml-2 w-5 h-5" />
+  </Link>
+  <button className="btn-secondary">Watch Demo</button>
+</div>
 
               <div className="flex flex-col gap-3 pt-4">
                 <div className="flex items-center gap-3">
