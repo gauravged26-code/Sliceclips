@@ -28,12 +28,12 @@ export default function Home() {
                 </p>
               </div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+           <div className="flex flex-col sm:flex-row gap-4">
   <Link
-    href={isAuthenticated ? '/dashboard' : '/signup'}
+    href="/dashboard"
     className="btn-primary inline-flex items-center justify-center"
   >
-    {isAuthenticated ? 'Go to Dashboard' : 'Start Free Trial'} <ArrowRight className="ml-2 w-5 h-5" />
+    Go to Dashboard <ArrowRight className="ml-2 w-5 h-5" />
   </Link>
   <button className="btn-secondary">Watch Demo</button>
 </div>
