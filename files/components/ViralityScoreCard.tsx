@@ -1,4 +1,3 @@
-// components/ViralityScoreCard.tsx
 'use client';
 
 import React from 'react';
