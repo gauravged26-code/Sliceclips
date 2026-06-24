@@ -1,13 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  eslint: {
-    ignoreDuringBuilds: true,
+  eslint: { ignoreduringbuild: true },
+  typescript: {ignoreBuildErrors: true,
   },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  // Add this headers block to bypass the CSP block
   async headers() {
     return [
       {
