@@ -1,0 +1,51 @@
+// components/ViralityScoreCard.tsx
+'use client';
+
+import React from 'react';
+import { TrendingUp, Zap, Award } from 'lucide-react';
+
+interface ViralityScoreCardProps {
+  score: number;
+  breakdown?: {
+    hookStrength: number;
+    retentionPotential: number;
+  };
+}
+
+export default function ViralityScoreCard({ score, breakdown }: ViralityScoreCardProps) {
+  // Determine color theme dynamically based on score strength
+  const getScoreColor = (val: number) => {
+    if (val >= 85) return 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10';
+    if (val >= 70) return 'text-indigo-400 border-indigo-500/30 bg-indigo-500/10';
+    return 'text-amber-400 border-amber-500/30 bg-amber-500/10';
+  };
+
+  return (
+    <div className={`border rounded-xl p-4 transition-all ${getScoreColor(score)}`}>
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
+          <TrendingUp className="w-5 h-5" />
+          <span className="font-bold text-sm uppercase tracking-wider">Virality Index</span>
+        </div>
+        <div className="text-2xl font-black">{score}<span className="text-xs font-normal text-slate-400">/100</span></div>
+      </div>
+
+      {breakdown && (
+        <div className="space-y-2 pt-2 border-t border-slate-800/40 text-xs text-slate-300">
+          <div className="flex items-center justify-between">
+            <span className="flex items-center gap-1.5 text-slate-400">
+              <Zap className="w-3.5 h-3.5 text-amber-400" /> Hook Strength
+            </span>
+            <span className="font-semibold">{breakdown.hookStrength}%</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="flex items-center gap-1.5 text-slate-400">
+              <Award className="w-3.5 h-3.5 text-indigo-400" /> Retention Loop
+            </span>
+            <span className="font-semibold">{breakdown.retentionPotential}%</span>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
